@@ -31,7 +31,7 @@
 
   # ── Desktop Environment: GNOME on Wayland ─────────────────────────────────
   services.displayManager.gdm.enable = true;
-  services.displayManager.gdm.wayland =  true;
+  services.displayManager.gdm.wayland = true;
   services.desktopManager.gnome.enable = true;
 
   # Disable unwanted GNOME apps
