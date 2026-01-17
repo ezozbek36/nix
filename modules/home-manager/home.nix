@@ -60,7 +60,7 @@
       l = "ls -CF";
       ".." = "cd ..";
       "..." = "cd ../..";
-      rebuild = "sudo nixos-rebuild switch --flake $HOME/.nixconfig#default";
+      rebuild = "sudo nixos-rebuild switch --flake github:ezozbek36/nix#default";
     };
 
     initContent = ''
