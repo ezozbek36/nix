@@ -7,7 +7,7 @@
 }: {
   imports = [
     ./hardware.nix
-    inputs.nixos-hardware.nixosModules.common-cpu-intel-raptor-lake
+    inputs.nixos-hardware.nixosModules.common-cpu-intel
     inputs.nixos-hardware.nixosModules.common-pc-laptop
     inputs.nixos-hardware.nixosModules.common-pc-laptop-ssd
   ];
@@ -113,14 +113,14 @@
     enable32Bit = true;
     extraPackages = with pkgs; [
       intel-media-driver # VA-API for Intel (iHD)
-      vaapiVdpau # VDPAU via VA-API
+      libva-vdpau-driver # VDPAU via VA-API
       libvdpau-va-gl # VDPAU via OpenGL
       intel-compute-runtime # OpenCL for Intel
       vulkan-validation-layers
     ];
     extraPackages32 = with pkgs.driversi686Linux; [
       intel-media-driver
-      vaapiVdpau
+      libva-vdpau-driver
       libvdpau-va-gl
     ];
   };
@@ -253,7 +253,7 @@
     intel-gpu-tools # Intel GPU debugging (intel_gpu_top)
     libva-utils # VA-API debugging (vainfo)
     vulkan-tools # Vulkan debugging (vulkaninfo)
-    glxinfo # OpenGL debugging
+    #glxinfo # OpenGL debugging
     pciutils # lspci
     usbutils # lsusb
     lm_sensors # Temperature sensors
