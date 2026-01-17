@@ -7,7 +7,7 @@
 }: {
   imports = [
     ./hardware.nix
-    inputs.nixos-hardware.nixosModules.common-cpu-intel-raptor-lake # i7-13700H specific
+    inputs.nixos-hardware.nixosModules.common-cpu-intel-raptor-lake
     inputs.nixos-hardware.nixosModules.common-pc-laptop
     inputs.nixos-hardware.nixosModules.common-pc-laptop-ssd
   ];
@@ -40,11 +40,6 @@
     "i915.enable_psr=1" # Panel Self Refresh (power savings on eDP)
   ];
 
-  # Intel i915 module options
-  boot.extraModprobeConfig = ''
-    options i915 enable_guc=3 enable_fbc=1 enable_psr=1
-  '';
-
   # Kernel sysctl tuning for i7-13700H
   boot.kernel.sysctl = {
     # VM writeback tuning for NVMe (Micron 3400)
@@ -61,6 +56,13 @@
   powerManagement = {
     enable = true;
     cpuFreqGovernor = null; # Let intel_pstate/TLP handle this
+  };
+
+  # ── Zram Swap ─────────────────────────────────────────────────────────────
+  zramSwap = {
+    enable = true;
+    memoryPercent = 50;
+    algorithm = "zstd"; # Best compression ratio
   };
 
   # ── Networking ────────────────────────────────────────────────────────────
@@ -111,16 +113,13 @@
     enable32Bit = true;
     extraPackages = with pkgs; [
       intel-media-driver # VA-API for Intel (iHD)
-      intel-vaapi-driver # VA-API for older Intel (i965)
       vaapiVdpau # VDPAU via VA-API
       libvdpau-va-gl # VDPAU via OpenGL
       intel-compute-runtime # OpenCL for Intel
-      intel-ocl # Legacy OpenCL
       vulkan-validation-layers
     ];
     extraPackages32 = with pkgs.driversi686Linux; [
       intel-media-driver
-      intel-vaapi-driver
       vaapiVdpau
       libvdpau-va-gl
     ];
@@ -159,8 +158,6 @@
     # GBM backend for NVIDIA on Wayland
     GBM_BACKEND = "nvidia-drm";
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-    # Hardware cursors on Wayland
-    WLR_NO_HARDWARE_CURSORS = "1";
   };
 
   # ── Thunderbolt 4 ─────────────────────────────────────────────────────────
