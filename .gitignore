@@ -1,0 +1,18 @@
+# Flake lock file (optional - some prefer to commit this)
+# flake.lock
+
+# Result symlinks from nix build
+result
+result-*
+
+# Backup files
+*.bak
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*~
+
+# macOS
+.DS_Store
