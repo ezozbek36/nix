@@ -1,5 +1,4 @@
-# Home Manager configuration for user: ezozbek
-# Manages user-specific packages, dotfiles, and GNOME settings.
+# Home Manager configuration
 {
   config,
   pkgs,
@@ -10,11 +9,12 @@
   home.username = "ezozbek";
   home.homeDirectory = "/home/ezozbek";
 
+  imports = [
+    inputs.zen-browser.homeModules.twilight
+  ];
+
   # ── Packages ──────────────────────────────────────────────────────────────
   home.packages = with pkgs; [
-    # Browser
-    inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
-
     # Fonts
     nerd-fonts.jetbrains-mono
     nerd-fonts.fira-code
@@ -31,6 +31,11 @@
     gnomeExtensions.dash-to-dock
     gnomeExtensions.blur-my-shell
   ];
+
+  # ── Browser: Zen ──────────────────────────────────────────────────────────
+  programs.zen-browser = {
+    enable = true;
+  };
 
   # ── Git ───────────────────────────────────────────────────────────────────
   programs.git = {
@@ -124,7 +129,7 @@
           y = 10;
         };
         decorations = "full";
-        opacity = 0.95;
+        opacity = 0.98;
         dynamic_title = true;
       };
 
