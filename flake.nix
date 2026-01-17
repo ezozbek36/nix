@@ -18,6 +18,8 @@
         home-manager.follows = "home-manager";
       };
     };
+
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
   };
 
   outputs = {
@@ -26,6 +28,7 @@
     flake-utils,
     home-manager,
     zen-browser,
+    nixos-hardware,
     ...
   } @ inputs:
     {

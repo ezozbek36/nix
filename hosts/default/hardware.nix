@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   modulesPath,
   ...
 }: {
@@ -15,19 +14,19 @@
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/94dbb0a1-44f1-45d7-85f4-6486b21a194c";
     fsType = "btrfs";
-    options = ["subvol=root"];
+    options = ["subvol=root" "compress=zstd:1" "noatime" "discard=async" "space_cache=v2"];
   };
 
   fileSystems."/home" = {
     device = "/dev/disk/by-uuid/94dbb0a1-44f1-45d7-85f4-6486b21a194c";
     fsType = "btrfs";
-    options = ["subvol=home"];
+    options = ["subvol=home" "compress=zstd:1" "noatime" "discard=async" "space_cache=v2"];
   };
 
   fileSystems."/nix" = {
     device = "/dev/disk/by-uuid/94dbb0a1-44f1-45d7-85f4-6486b21a194c";
     fsType = "btrfs";
-    options = ["subvol=nix"];
+    options = ["subvol=nix" "compress=zstd:1" "noatime" "discard=async" "space_cache=v2"];
   };
 
   fileSystems."/boot" = {
