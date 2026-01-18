@@ -17,7 +17,7 @@
       l = "ls -CF";
       ".." = "cd ..";
       "..." = "cd ../..";
-      rebuild = "sudo nixos-rebuild switch --flake github:ezozbek36/nix#default";
+      rebuild = "sudo nixos-rebuild switch --flake github:ezozbek36/nix#swift-sfx14-71g";
     };
     initContent = ''
       # Additional zsh configuration

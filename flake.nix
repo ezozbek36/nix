@@ -32,8 +32,8 @@
     ...
   } @ inputs:
     {
-      # NixOS configuration (system-specific)
-      nixosConfigurations.default = nixpkgs.lib.nixosSystem {
+      # NixOS configuration
+      nixosConfigurations.swift-sfx14-71g = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = {inherit inputs;};
         modules = [
