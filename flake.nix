@@ -37,7 +37,7 @@
         system = "x86_64-linux";
         specialArgs = {inherit inputs;};
         modules = [
-          ./hosts/default/configuration.nix
+          ./hosts/swift-sfx14-71g/configuration.nix
 
           home-manager.nixosModules.home-manager
           {

@@ -3,8 +3,10 @@
     iGPU-only.configuration = {
       system.nixos.tags = ["iGPU-only"];
       hardware.nvidia = {
-        prime.offload.enable = lib.mkForce false;
-        prime.offload.enableOffloadCmd = lib.mkForce false;
+        prime = {
+          offload.enable = lib.mkForce false;
+          offload.enableOffloadCmd = lib.mkForce false;
+        };
         powerManagement.finegrained = lib.mkForce false;
       };
       boot.extraModprobeConfig = ''
@@ -25,12 +27,14 @@
     };
     PRIME-sync.configuration = {
       system.nixos.tags = ["PRIME-sync"];
-      hardware.nvidia.prime = {
-        offload.enable = lib.mkForce false;
-        offload.enableOffloadCmd = lib.mkForce false;
-        sync.enable = lib.mkForce true;
+      hardware.nvidia = {
+        prime = {
+          offload.enable = lib.mkForce false;
+          offload.enableOffloadCmd = lib.mkForce false;
+          sync.enable = lib.mkForce true;
+        };
+        powerManagement.finegrained = lib.mkForce false;
       };
-      hardware.nvidia.powerManagement.finegrained = lib.mkForce false;
     };
   };
 }

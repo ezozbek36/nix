@@ -7,6 +7,5 @@
     ../../modules/nixos/default.nix
   ];
 
-  # Host-specific overrides can be added here if needed
   system.stateVersion = "25.11";
 }
