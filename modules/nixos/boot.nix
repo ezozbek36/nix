@@ -1,6 +1,10 @@
 {pkgs, ...}: {
-  boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.systemd-boot = {
+    enable = true;
+    consoleMode = "2";
+  };
+
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.kernelParams = [
     "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
