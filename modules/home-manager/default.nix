@@ -5,13 +5,11 @@
 
   imports = [
     inputs.zen-browser.homeModules.beta
-    ./shell/zsh.nix
-    ./shell/starship.nix
-    ./terminal/alacritty.nix
-    ./programs/git.nix
-    ./programs/browser.nix
+    ./shell
+    ./terminal
+    ./programs
+    ./desktop
     ./fonts.nix
-    ./desktop/gnome.nix
   ];
 
   # ── Home Manager Version ──────────────────────────────────────────────────
