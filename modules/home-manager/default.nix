@@ -8,6 +8,8 @@
     ./terminal
     ./programs
     ./desktop
+    ./editor
+    ./services
     ./fonts.nix
   ];
 

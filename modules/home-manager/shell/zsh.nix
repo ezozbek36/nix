@@ -1,9 +1,11 @@
 {...}: {
   programs.zsh = {
     enable = true;
+    enableLsColors = true;
     enableCompletion = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
+
     history = {
       size = 10000;
       save = 10000;
@@ -11,6 +13,7 @@
       ignoreAllDups = true;
       share = true;
     };
+
     shellAliases = {
       ll = "ls -la";
       la = "ls -A";
@@ -19,11 +22,14 @@
       "..." = "cd ../..";
       rebuild = "sudo nixos-rebuild switch --flake github:ezozbek36/nix#swift-sfx14-71g";
     };
+
     initContent = ''
-      # Additional zsh configuration
-      bindkey -e  # Emacs keybindings
-      bindkey '^[[A' history-search-backward
-      bindkey '^[[B' history-search-forward
+      
     '';
+
+    oh-my-zsh = {
+      enable = true;
+      plugins = ["git" "thefuck"];
+    };
   };
 }
