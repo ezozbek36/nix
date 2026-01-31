@@ -24,7 +24,7 @@
     };
 
     initContent = ''
-      
+
     '';
 
     oh-my-zsh = {
