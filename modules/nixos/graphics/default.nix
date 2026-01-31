@@ -2,6 +2,6 @@
   imports = [
     ./intel.nix
     ./nvidia.nix
-    ./specialisations.nix
+    # ./specialisations.nix
   ];
 }
