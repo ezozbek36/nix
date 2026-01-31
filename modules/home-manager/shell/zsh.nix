@@ -1,7 +1,7 @@
 {...}: {
   programs.zsh = {
     enable = true;
-    enableLsColors = true;
+    #enableLsColors = true;
     enableCompletion = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
