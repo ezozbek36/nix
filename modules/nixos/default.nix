@@ -13,5 +13,6 @@
     ./desktop
     ./graphics
     ./environment
+    ./memory
   ];
 }

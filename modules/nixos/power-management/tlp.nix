@@ -1,16 +1,4 @@
 {...}: {
-  powerManagement = {
-    enable = true;
-    cpuFreqGovernor = "powersave";
-  };
-
-  zramSwap = {
-    enable = true;
-    memoryPercent = 50;
-    algorithm = "zstd";
-  };
-
-  services.thermald.enable = true;
   services.power-profiles-daemon.enable = false;
 
   services.tlp = {
