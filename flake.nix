@@ -9,7 +9,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
 
-    flake-utils.url = "github:numtide/flake-utils";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
     home-manager = {
       url = "github:nix-community/home-manager/release-25.11";
@@ -25,15 +25,18 @@
     };
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+
+    flake-utils.url = "github:numtide/flake-utils";
   };
 
   outputs = {
     self,
     nixpkgs,
+    zen-browser,
     flake-utils,
     home-manager,
-    zen-browser,
     nixos-hardware,
+    nixpkgs-unstable,
     ...
   } @ inputs:
     {
@@ -55,9 +58,10 @@
       };
     }
     // flake-utils.lib.eachDefaultSystem (system: let
-      pkgs = nixpkgs.legacyPackages.${system};
+      pkgs = nixpkgs-unstable.legacyPackages.${system};
     in {
-      # Formatter: alejandra
       formatter = pkgs.alejandra;
+
+      devShells.default = import ./shell.nix self {inherit pkgs;};
     });
 }

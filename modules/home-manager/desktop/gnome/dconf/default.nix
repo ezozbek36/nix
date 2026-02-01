@@ -1,4 +1,6 @@
 {...}: {
+  dconf.enable = true;
+
   imports = [
     ./interface.nix
     ./wm.nix
