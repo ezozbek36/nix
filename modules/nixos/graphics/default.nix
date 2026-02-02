@@ -1,6 +1,6 @@
 {...}: {
   imports = [
-    ./intel
-    ./nvidia
+    ./intel.nix
+    ./nvidia.nix
   ];
 }

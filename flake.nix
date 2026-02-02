@@ -9,7 +9,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
 
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     home-manager = {
       url = "github:nix-community/home-manager/release-25.11";
@@ -38,12 +38,17 @@
     nixos-hardware,
     nixpkgs-unstable,
     ...
-  } @ inputs:
+  } @ inputs: let
+    system = "x86_64-linux";
+    pkgs-unstable = import nixpkgs-unstable {
+      inherit system;
+    };
+  in
     {
       # NixOS configuration
       nixosConfigurations.swift-sfx14-71g = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = {inherit inputs;};
+        inherit system;
+        specialArgs = {inherit inputs pkgs-unstable;};
         modules = [
           ./hosts/swift-sfx14-71g/configuration.nix
 

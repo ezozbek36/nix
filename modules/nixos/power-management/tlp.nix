@@ -1,8 +1,15 @@
-{...}: {
+{pkgs-unstable, ...}: {
   services.power-profiles-daemon.enable = false;
 
   services.tlp = {
     enable = true;
+    package = pkgs-unstable.tlp;
+
+    pd = {
+      enable = true;
+      package = pkgs-unstable.tlp-pd;
+    };
+
     settings = {
       # ============================================
       # AC Mode: Plugged In - Go Fast

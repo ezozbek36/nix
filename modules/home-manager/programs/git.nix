@@ -1,10 +1,8 @@
 {...}: {
   programs.git = {
     enable = true;
-    config = {
-      init.defaultBranch = "main";
-    };
     settings = {
+      init.defaultBranch = "main";
       user = {
         name = "Ezozbek";
         email = "git@ezozbek.dev";

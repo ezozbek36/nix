@@ -1,6 +1,6 @@
 {...}: {
   imports = [
-    ./git
+    ./git.nix
     ./browser
   ];
 }

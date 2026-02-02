@@ -1,18 +1,18 @@
 {...}: {
   imports = [
-    ./nix-settings
-    ./boot
-    ./networking
-    ./locale
-    ./audio
-    ./bluetooth
+    ./nix-settings.nix
+    ./boot.nix
+    ./networking.nix
+    ./locale.nix
+    ./audio.nix
+    ./bluetooth.nix
     ./power-management
-    ./hardware-services
-    ./users
-    ./system-packages
+    ./hardware-services.nix
+    ./users.nix
+    ./system-packages.nix
     ./desktop
     ./graphics
-    ./environment
-    ./memory
+    ./environment.nix
+    ./memory.nix
   ];
 }

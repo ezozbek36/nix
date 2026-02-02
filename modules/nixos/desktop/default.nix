@@ -1,6 +1,6 @@
 {...}: {
   imports = [
     ./gnome.nix
-    ./auto-login
+    ./auto-login.nix
   ];
 }

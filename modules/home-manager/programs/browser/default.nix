@@ -1,5 +1,5 @@
 {...}: {
   imports = [
-    ./zen
+    ./zen.nix
   ];
 }

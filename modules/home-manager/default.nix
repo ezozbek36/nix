@@ -10,7 +10,7 @@
     ./desktop
     ./editor
     ./services
-    ./fonts
+    ./fonts.nix
   ];
 
   # Home Manager Version

@@ -4,10 +4,10 @@
     appindicator
     dash-to-dock
     blur-my-shell
-    window-window-title-is-back
+    # window-window-title-is-back
   ];
 in {
-  home-manager.pkgs = extensions;
+  home.packages = extensions;
 
   # Export for use in dconf settings
   _module.args.gnomeExtensionsList = extensions;
