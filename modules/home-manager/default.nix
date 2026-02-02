@@ -1,7 +1,9 @@
 # Home Manager configuration
 {...}: {
-  home.username = "ezozbek";
-  home.homeDirectory = "/home/ezozbek";
+  home = {
+    username = "ezozbek";
+    homeDirectory = "/home/ezozbek";
+  };
 
   imports = [
     ./shell

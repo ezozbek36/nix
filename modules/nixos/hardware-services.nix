@@ -1,7 +1,12 @@
-{...}: {
-  hardware.enableRedistributableFirmware = true;
-  hardware.enableAllFirmware = true;
-  services.fwupd.enable = true;
-  services.hardware.bolt.enable = true;
-  services.libinput.enable = true;
+_: {
+  hardware = {
+    enableAllFirmware = true;
+    enableRedistributableFirmware = true;
+  };
+
+  services = {
+    fwupd.enable = true;
+    hardware.bolt.enable = true;
+    libinput.enable = true;
+  };
 }

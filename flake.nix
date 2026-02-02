@@ -32,10 +32,8 @@
   outputs = {
     self,
     nixpkgs,
-    zen-browser,
     flake-utils,
     home-manager,
-    nixos-hardware,
     nixpkgs-unstable,
     ...
   } @ inputs: let
@@ -54,10 +52,12 @@
 
           home-manager.nixosModules.home-manager
           {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = {inherit inputs;};
-            home-manager.users.ezozbek = import ./modules/home-manager;
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              extraSpecialArgs = {inherit inputs;};
+              users.ezozbek = import ./modules/home-manager;
+            };
           }
         ];
       };
