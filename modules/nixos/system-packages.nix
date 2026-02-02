@@ -3,7 +3,6 @@
     wget
     curl
     btop
-    nvtopPackages.intel
     nvtopPackages.nvidia
     intel-gpu-tools
     libva-utils
