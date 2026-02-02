@@ -3,7 +3,7 @@
 
   services.tlp = {
     enable = true;
-    package = pkgs-unstable.tlp-pd;
+    package = pkgs-unstable.tlp;
 
     pd.enable = true;
 

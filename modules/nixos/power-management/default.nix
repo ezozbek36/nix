@@ -1,8 +1,9 @@
-{inputs,...}: {
-  disabledModules = [ "modules/nixos/power-management/tlp.nix" ];
+{inputs, ...}: {
+  disabledModules = ["services/hardware/tlp.nix"];
 
   imports = [
-    "${inputs.nixpkgs-unstable}/modules/nixos/power-management/tlp.nix"
+    "${inputs.nixpkgs-unstable}/nixos/modules/services/hardware/tlp.nix"
+    ./tlp.nix
   ];
 
   powerManagement = {
