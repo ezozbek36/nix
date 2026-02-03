@@ -38,16 +38,23 @@
     ...
   } @ inputs: let
     system = "x86_64-linux";
-    pkgs-unstable = import nixpkgs-unstable {
-      inherit system;
-    };
   in
     {
       # NixOS configuration
       nixosConfigurations.swift-sfx14-71g = nixpkgs.lib.nixosSystem {
         inherit system;
-        specialArgs = {inherit inputs pkgs-unstable;};
+        specialArgs = {inherit inputs;};
         modules = [
+          {
+            nixpkgs.overlays = [
+              (final: prev: {
+                unstable = import nixpkgs-unstable {
+                  inherit (final.system);
+                };
+              })
+            ];
+          }
+
           ./hosts/swift-sfx14-71g/configuration.nix
 
           home-manager.nixosModules.home-manager
