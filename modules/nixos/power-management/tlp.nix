@@ -5,7 +5,10 @@
     enable = true;
     package = pkgs-unstable.tlp;
 
-    pd.enable = true;
+    pd = {
+      enable = true;
+      package = pkgs-unstable.tlp-pd;
+    };
 
     settings = {
       # ============================================
