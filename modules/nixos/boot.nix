@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   boot = {
     loader = {
       efi.canTouchEfiVariables = true;
@@ -8,7 +12,12 @@
       };
     };
 
-    kernelPackages = pkgs.linuxPackages_latest;
+    supportedFilesystems.zfs = true;
+    zfs.package = pkgs.cachyosKernels.zfs-cachyos.override {
+      kernel = config.boot.kernelPackages.kernel;
+    };
+
+    kernelPackages = pkgs.linuxKernel.packagesFor pkgs.cachyosKernels.linux-cachyos-latest-lto-x86_64-v3;
 
     kernelParams = [
       "nvidia.NVreg_PreserveVideoMemoryAllocations=1"

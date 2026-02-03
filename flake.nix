@@ -7,6 +7,8 @@
   };
 
   inputs = {
+    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
+
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
 
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -35,6 +37,7 @@
     flake-utils,
     home-manager,
     nixpkgs-unstable,
+    nix-cachyos-kernel,
     ...
   } @ inputs: let
     system = "x86_64-linux";
@@ -47,6 +50,8 @@
         modules = [
           {
             nixpkgs.overlays = [
+              nix-cachyos-kernel.overlays.pinned
+
               (final: prev: {
                 unstable = import nixpkgs-unstable {
                   inherit system;
