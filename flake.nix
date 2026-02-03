@@ -49,7 +49,7 @@
             nixpkgs.overlays = [
               (final: prev: {
                 unstable = import nixpkgs-unstable {
-                  inherit (final.system);
+                  inherit system;
                 };
               })
             ];
