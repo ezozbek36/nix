@@ -12,12 +12,12 @@
       };
     };
 
-    supportedFilesystems.zfs = true;
-    zfs.package = pkgs.cachyosKernels.zfs-cachyos.override {
-      kernel = config.boot.kernelPackages.kernel;
-    };
-
     kernelPackages = pkgs.linuxKernel.packagesFor pkgs.cachyosKernels.linux-cachyos-latest-lto-x86_64-v3;
+
+    #supportedFilesystems.zfs = true;
+    #zfs = {
+    #  package = config.boot.kernelPackages.zfs_cachyos;
+    #};
 
     kernelParams = [
       "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
