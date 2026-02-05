@@ -64,6 +64,8 @@
                   inherit system;
                 };
               })
+
+              ./overlays/alacritty.nix
             ];
           }
 
