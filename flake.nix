@@ -65,7 +65,7 @@
                 };
               })
 
-              ./overlays/alacritty.nix
+              (import ./overlays/alacritty.nix)
             ];
           }
 
