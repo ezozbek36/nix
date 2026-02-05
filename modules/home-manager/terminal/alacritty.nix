@@ -14,21 +14,6 @@ _: {
         opacity = 0.98;
         dynamic_title = true;
       };
-      font = {
-        normal = {
-          family = "JetBrainsMono Nerd Font";
-          style = "Regular";
-        };
-        bold = {
-          family = "JetBrainsMono Nerd Font";
-          style = "Bold";
-        };
-        italic = {
-          family = "JetBrainsMono Nerd Font";
-          style = "Italic";
-        };
-        size = 12.0;
-      };
       cursor = {
         style = {
           shape = "Block";

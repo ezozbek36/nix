@@ -5,5 +5,8 @@ pkgs.mkShellNoCC {
     statix
     deadnix
     alejandra
+
+    sops
+    ssh-to-age
   ];
 }

@@ -14,5 +14,6 @@
     ./graphics
     ./environment.nix
     ./memory.nix
+    ./sops.nix
   ];
 }

@@ -13,6 +13,16 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    stylix = {
+      url = "github:nix-community/stylix/release-25.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
       inputs = {
@@ -28,7 +38,9 @@
 
   outputs = {
     self,
+    stylix,
     nixpkgs,
+    sops-nix,
     flake-utils,
     home-manager,
     nixpkgs-unstable,
@@ -57,6 +69,8 @@
 
           ./hosts/swift-sfx14-71g/configuration.nix
 
+          sops-nix.nixosModules.sops
+
           home-manager.nixosModules.home-manager
           {
             home-manager = {
@@ -64,16 +78,21 @@
               useUserPackages = true;
               extraSpecialArgs = {inherit inputs;};
               users.ezozbek = import ./modules/home-manager;
+              sharedModules = [
+                stylix.homeModules.stylix
+              ];
             };
           }
         ];
       };
     }
-    // flake-utils.lib.eachDefaultSystem (system: let
-      pkgs = nixpkgs-unstable.legacyPackages.${system};
-    in {
-      formatter = pkgs.alejandra;
+    // flake-utils.lib.eachDefaultSystem (
+      system: let
+        pkgs = nixpkgs-unstable.legacyPackages.${system};
+      in {
+        formatter = pkgs.alejandra;
 
-      devShells.default = import ./shell.nix self {inherit pkgs;};
-    });
+        devShells.default = import ./shell.nix self {inherit pkgs;};
+      }
+    );
 }
