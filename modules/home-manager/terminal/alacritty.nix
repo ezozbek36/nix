@@ -11,7 +11,7 @@ _: {
           y = 10;
         };
         decorations = "full";
-        opacity = 0.98;
+        #opacity = 0.98;
         dynamic_title = true;
       };
       cursor = {

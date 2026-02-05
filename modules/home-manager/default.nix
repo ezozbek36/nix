@@ -6,7 +6,7 @@
   };
 
   imports = [
-    ./stylix.nix
+    #./stylix.nix
     ./shell
     ./terminal
     ./programs
