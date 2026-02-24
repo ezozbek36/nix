@@ -20,7 +20,7 @@ _: {
         style = "bold red";
       };
       nix_shell = {
-        symbol = " ";
+        symbol = "❄️ ";
         format = "via [$symbol$state]($style) ";
       };
       cmd_duration = {
