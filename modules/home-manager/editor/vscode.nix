@@ -2,13 +2,19 @@
   programs.vscode = {
     enable = true;
     package = pkgs.unstable.vscode;
-    #defaultEditor = true;
     profiles.default = {
+      enableExtensionUpdateCheck = false;
       extensions = with pkgs.vscode-extensions; [
-        wakatime.vscode-wakatime
-        editorconfig.editorconfig
+        skellock.just
         jnoortheen.nix-ide
+        rust-lang.rust-analyzer
+        wakatime.vscode-wakatime
+        tamasfe.even-better-toml
+        editorconfig.editorconfig
       ];
+      userSettings = {
+        "chat.disableAIFeatures" = true;
+      };
     };
   };
 }
