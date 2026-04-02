@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   programs.vscode = {
     enable = true;
+    package = pkgs.unstable.vscode;
     #defaultEditor = true;
     profiles.default = {
       extensions = with pkgs.vscode-extensions; [
