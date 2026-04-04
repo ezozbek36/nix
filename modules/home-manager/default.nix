@@ -3,10 +3,11 @@
   home = {
     username = "ezozbek";
     homeDirectory = "/home/ezozbek";
+    preferXdgDirectories = true;
   };
 
   imports = [
-    #./stylix.nix
+    ./stylix.nix
     ./shell
     ./terminal
     ./programs

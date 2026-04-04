@@ -1,31 +1,31 @@
 {pkgs, ...}: {
   stylix = {
     enable = true;
+    autoEnable = false;
     polarity = "dark";
     image = ../../assets/wallpapers/ye-graduation-album-cover.png;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-macchiato.yaml";
 
-    #cursor = {
-    #  package = pkgs.bibata-cursors;
-    #  name = "Bibata-Modern-Ice";
-    #};
+    cursor = {
+      size = 24;
+      name = "Bibata-Modern-Ice";
+      package = pkgs.bibata-cursors;
+    };
 
-    fonts = {
-      monospace = {
-        package = pkgs.nerd-fonts.jetbrains-mono;
-        name = "JetBrainsMono Nerd Font";
+    targets = {
+      btop.enable = true;
+      gnome-text-editor.enable = true;
+      alacritty = {
+        enable = true;
+        fonts.enable = false;
       };
-      sansSerif = {
-        package = pkgs.dejavu_fonts;
-        name = "DejaVu Sans";
+      gtk = {
+        enable = true;
+        fonts.enable = false;
       };
-      serif = {
-        package = pkgs.dejavu_fonts;
-        name = "DejaVu Serif";
-      };
-      emoji = {
-        package = pkgs.noto-fonts-color-emoji;
-        name = "Noto Color Emoji";
+      gnome = {
+        enable = true;
+        fonts.enable = false;
       };
     };
   };
