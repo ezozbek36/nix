@@ -1,7 +1,6 @@
 _: {
   programs.zsh = {
     enable = true;
-    #enableLsColors = true;
     enableCompletion = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
@@ -22,13 +21,9 @@ _: {
       "..." = "cd ../..";
     };
 
-    initContent = ''
-
-    '';
-
     oh-my-zsh = {
       enable = true;
-      plugins = ["git"];
+      plugins = ["git" "sudo"];
     };
   };
 }

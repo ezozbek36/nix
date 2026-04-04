@@ -6,12 +6,7 @@ _: {
         TERM = "xterm-256color";
       };
       window = {
-        padding = {
-          x = 10;
-          y = 10;
-        };
         decorations = "full";
-        #opacity = 0.98;
         dynamic_title = true;
       };
       cursor = {
