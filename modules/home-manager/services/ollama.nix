@@ -1,6 +1,6 @@
 _: {
   services.ollama = {
-    enable = true;
+    enable = false;
     acceleration = "cuda";
     #serviceConfig = {
     #  Environment = [
