@@ -1,11 +1,16 @@
 {pkgs, ...}: let
-  extensions = with pkgs.gnomeExtensions; [
-    runcat
-    appindicator
-    dash-to-dock
-    blur-my-shell
-    # window-window-title-is-back
-  ];
+  copyous = pkgs.callPackage ./copyous.nix {};
+
+  extensions = with pkgs.gnomeExtensions;
+    [
+      runcat
+      user-themes
+      appindicator
+      dash-to-dock
+      blur-my-shell
+      pkgs.unstable.gnomeExtensions.tiling-shell
+    ]
+    ++ [copyous];
 in {
   home.packages = extensions;
 
