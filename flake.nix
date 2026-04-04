@@ -56,6 +56,10 @@
         specialArgs = {inherit inputs;};
         modules = [
           {
+            nixpkgs.config = {
+              allowUnfree = true;
+            };
+
             nixpkgs.overlays = [
               nix-cachyos-kernel.overlays.pinned
 

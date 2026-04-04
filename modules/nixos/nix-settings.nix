@@ -12,6 +12,4 @@ _: {
       "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
     ];
   };
-
-  nixpkgs.config.allowUnfree = true;
 }
