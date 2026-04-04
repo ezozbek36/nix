@@ -14,6 +14,10 @@
       ];
       userSettings = {
         "chat.disableAIFeatures" = true;
+        "terminal.integrated.enableImages" = true;
+        "terminal.integrated.gpuAcceleration" = "on";
+        "terminal.integrated.defaultProfile.linux" = "zsh";
+        "rust-analyzer.check.command" = "clippy";
       };
     };
   };
