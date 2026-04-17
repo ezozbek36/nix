@@ -5,19 +5,23 @@
     profiles.default = {
       enableExtensionUpdateCheck = false;
       extensions = with pkgs.vscode-extensions; [
-        skellock.just
-        jnoortheen.nix-ide
-        rust-lang.rust-analyzer
-        wakatime.vscode-wakatime
-        tamasfe.even-better-toml
         editorconfig.editorconfig
+        jnoortheen.nix-ide
+        mkhl.direnv
+        rust-lang.rust-analyzer
+        skellock.just
+        tamasfe.even-better-toml
+        tyriar.sort-lines
+        wakatime.vscode-wakatime
       ];
       userSettings = {
         "chat.disableAIFeatures" = true;
+        "rust-analyzer.check.command" = "clippy";
+        "terminal.integrated.defaultProfile.linux" = "zsh";
         "terminal.integrated.enableImages" = true;
         "terminal.integrated.gpuAcceleration" = "on";
-        "terminal.integrated.defaultProfile.linux" = "zsh";
-        "rust-analyzer.check.command" = "clippy";
+        "update.mode" = "start";
+        "window.dialogStyle" = "native";
       };
     };
   };
