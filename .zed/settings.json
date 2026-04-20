@@ -1,7 +1,3 @@
-// Folder-specific settings
-//
-// For a full list of overridable settings, and general information on folder-specific settings,
-// see the documentation: https://zed.dev/docs/configuring-zed#settings-files
 {
   "lsp": {
     "nixd": {
@@ -17,11 +13,11 @@
         },
         "options": {
           "nixos": {
-            "expr": "(import ./.nixd-expr.nix).options.nixos or null",
+            "expr": "(import ./.nixd-expr.nix).options.nixos or null"
           },
           "home-manager": {
-            "expr": "(import ./.nixd-expr.nix).options.home-manager or null",
-          },
+            "expr": "(import ./.nixd-expr.nix).options.home-manager or null"
+          }
         }
       }
     }

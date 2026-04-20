@@ -2,11 +2,11 @@
   description = "NixOS configuration with Home Manager";
 
   inputs = {
-    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
-
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
 
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+
+    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
 
     home-manager = {
       url = "github:nix-community/home-manager/release-25.11";
@@ -26,14 +26,25 @@
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
       inputs = {
-        nixpkgs.follows = "nixpkgs";
+        # to ensure compatibility with the latest Firefox version
+        nixpkgs.follows = "nixpkgs-unstable";
         home-manager.follows = "home-manager";
       };
+    };
+
+    firefox-addons = {
+      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     flake-utils.url = "github:numtide/flake-utils";
+
+    json-schema = {
+      url = "path:///home/ezozbek/OpenSource/nix-json-schema";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -41,6 +52,8 @@
     stylix,
     nixpkgs,
     sops-nix,
+    json-schema,
+    zen-browser,
     flake-utils,
     home-manager,
     nixpkgs-unstable,
@@ -56,17 +69,12 @@
         specialArgs = {inherit inputs;};
         modules = [
           {
-            nixpkgs.config = {
-              allowUnfree = true;
-            };
-
             nixpkgs.overlays = [
               nix-cachyos-kernel.overlays.pinned
 
               (final: prev: {
                 unstable = import nixpkgs-unstable {
                   inherit system;
-                  config.allowUnfree = true;
                 };
               })
 
@@ -87,6 +95,8 @@
               users.ezozbek = import ./modules/home-manager;
               sharedModules = [
                 stylix.homeModules.stylix
+                zen-browser.homeModules.beta
+                json-schema.homeModules.default
               ];
             };
           }
