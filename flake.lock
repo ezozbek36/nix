@@ -293,14 +293,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1776517807,
-        "narHash": "sha256-15bbSMY6k6FkKZ+lVvsyqFIq+FGraSMRC2jSCporCig=",
-        "path": "/home/ezozbek/OpenSource/nix-json-schema",
-        "type": "path"
+        "lastModified": 1776653569,
+        "narHash": "sha256-874kAl169BrEuPmDBg2BjtCis8sMtkaK/TqYtma7uNk=",
+        "owner": "ezozbek36",
+        "repo": "nix-json-schema",
+        "rev": "926fbdffb691443ec4353e49936021aaadb70800",
+        "type": "github"
       },
       "original": {
-        "path": "/home/ezozbek/OpenSource/nix-json-schema",
-        "type": "path"
+        "owner": "ezozbek36",
+        "repo": "nix-json-schema",
+        "type": "github"
       }
     },
     "nix-cachyos-kernel": {

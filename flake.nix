@@ -42,7 +42,7 @@
     flake-utils.url = "github:numtide/flake-utils";
 
     json-schema = {
-      url = "path:///home/ezozbek/OpenSource/nix-json-schema";
+      url = "github:ezozbek36/nix-json-schema";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
