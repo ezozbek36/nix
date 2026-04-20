@@ -1,6 +1,6 @@
 {
   pkgs,
-  firefox-addons,
+  # firefox-addons,
   ...
 }: {
   programs.zen-browser = {
@@ -8,7 +8,7 @@
     setAsDefaultBrowser = true;
 
     profiles.default = {
-      extensions = with firefox-addons.packages.${pkgs.stdenv.hostPlatform.system}; [bitwarden-password-manager];
+      # extensions = with firefox-addons.packages.${pkgs.stdenv.hostPlatform.system}; [bitwarden-password-manager];
     };
   };
 }
