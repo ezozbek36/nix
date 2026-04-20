@@ -15,5 +15,7 @@
     ./environment.nix
     ./memory.nix
     ./sops.nix
+    ./ssh.nix
+    ./distributed-build.nix
   ];
 }
