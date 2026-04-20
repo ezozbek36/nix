@@ -1,6 +1,6 @@
 {...}: {
   imports = [
-    ./nix-settings.nix
+    ./nix.nix
     ./boot.nix
     ./networking.nix
     ./locale.nix
