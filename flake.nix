@@ -39,7 +39,7 @@
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
-    flake-utils.url = "github:numtide/flake-utils";
+    flake-parts.url = "github:hercules-ci/flake-parts";
 
     json-schema = {
       url = "github:ezozbek36/nix-json-schema";
@@ -47,69 +47,65 @@
     };
   };
 
-  outputs = {
+  outputs = inputs @ {
     self,
     stylix,
     nixpkgs,
     sops-nix,
-    json-schema,
     zen-browser,
-    flake-utils,
+    json-schema,
+    flake-parts,
     home-manager,
     nixpkgs-unstable,
     nix-cachyos-kernel,
     ...
-  } @ inputs: let
-    system = "x86_64-linux";
-  in
-    {
-      # NixOS configuration
-      nixosConfigurations.swift-sfx14-71g = nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = {inherit inputs;};
-        modules = [
-          {
-            nixpkgs.overlays = [
-              nix-cachyos-kernel.overlays.pinned
-
-              (final: prev: {
-                unstable = import nixpkgs-unstable {
-                  inherit system;
-                };
-              })
-
-              (import ./overlays/alacritty.nix)
-            ];
-          }
-
-          ./hosts/swift-sfx14-71g/configuration.nix
-
-          sops-nix.nixosModules.sops
-
-          home-manager.nixosModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              extraSpecialArgs = {inherit inputs;};
-              users.ezozbek = import ./modules/home-manager;
-              sharedModules = [
-                stylix.homeModules.stylix
-                zen-browser.homeModules.beta
-                json-schema.homeModules.default
-              ];
-            };
-          }
-        ];
-      };
-    }
-    // flake-utils.lib.eachDefaultSystem (
-      system: let
-        pkgs = nixpkgs-unstable.legacyPackages.${system};
-      in {
+  }:
+    flake-parts.lib.mkFlake {inherit inputs;} {
+      systems = ["x86_64-linux"];
+      perSystem = {pkgs, ...}: {
         formatter = pkgs.alejandra;
 
         devShells.default = import ./shell.nix self {inherit pkgs;};
-      }
-    );
+      };
+      flake = {
+        # NixOS configuration
+        nixosConfigurations.swift-sfx14-71g = nixpkgs.lib.nixosSystem {
+          specialArgs = {inherit inputs;};
+          modules = [
+            ({...}: {
+              nixpkgs.config.allowUnfree = true;
+              nixpkgs.overlays = [
+                (import ./overlays/alacritty.nix)
+                nix-cachyos-kernel.overlays.pinned
+                (final: prev: {
+                  unstable = import nixpkgs-unstable {
+                    system = "x86_64-linux";
+                    config.allowUnfree = true;
+                  };
+                })
+              ];
+            })
+
+            ./hosts/swift-sfx14-71g/configuration.nix
+
+            sops-nix.nixosModules.sops
+
+            home-manager.nixosModules.home-manager
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                extraSpecialArgs = {inherit inputs;};
+                users.ezozbek = import ./modules/home-manager;
+                sharedModules = [
+                  stylix.homeModules.stylix
+                  zen-browser.homeModules.beta
+                  json-schema.homeModules.default
+                ];
+              };
+            }
+          ];
+        };
+      };
+    };
 }
