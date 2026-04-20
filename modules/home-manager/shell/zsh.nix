@@ -10,7 +10,7 @@ _: {
       save = 10000;
       ignoreDups = true;
       ignoreAllDups = true;
-      share = true;
+      share = false;
     };
 
     shellAliases = {
