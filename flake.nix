@@ -45,6 +45,11 @@
       url = "github:ezozbek36/nix-json-schema";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    mac-style-plymouth = {
+      url = "github:SergioRibera/s4rchiso-plymouth-theme";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs @ {
@@ -58,6 +63,7 @@
     home-manager,
     nixpkgs-unstable,
     nix-cachyos-kernel,
+    mac-style-plymouth,
     ...
   }:
     flake-parts.lib.mkFlake {inherit inputs;} {
@@ -77,6 +83,7 @@
               nixpkgs.overlays = [
                 (import ./overlays/alacritty.nix)
                 nix-cachyos-kernel.overlays.pinned
+                mac-style-plymouth.overlays.default
                 (final: prev: {
                   unstable = import nixpkgs-unstable {
                     system = "x86_64-linux";

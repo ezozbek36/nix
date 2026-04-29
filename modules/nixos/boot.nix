@@ -1,9 +1,18 @@
-{
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   boot = {
+    consoleLogLevel = 3;
+    initrd.verbose = false;
+
+    initrd.systemd.enable = true;
+
+    plymouth = {
+      enable = true;
+      theme = "mac-style";
+      themePackages = [pkgs.mac-style-plymouth];
+    };
+
     loader = {
+      timeout = 0;
       efi.canTouchEfiVariables = true;
       systemd-boot = {
         enable = true;
@@ -13,12 +22,10 @@
 
     kernelPackages = pkgs.linuxKernel.packagesFor pkgs.cachyosKernels.linux-cachyos-latest-lto-x86_64-v3;
 
-    #supportedFilesystems.zfs = true;
-    #zfs = {
-    #  package = config.boot.kernelPackages.zfs_cachyos;
-    #};
-
     kernelParams = [
+      "quiet"
+      "udev.log_level=3"
+      "systemd.show_status=auto"
       "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
       "intel_pstate=active"
     ];
