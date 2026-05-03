@@ -50,11 +50,19 @@
       url = "github:SergioRibera/s4rchiso-plymouth-theme";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    relago = {
+      url = "github:xinux-org/relago";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
   };
 
   outputs = inputs @ {
     self,
     stylix,
+    relago,
     nixpkgs,
     sops-nix,
     zen-browser,
@@ -110,6 +118,11 @@
                   json-schema.homeModules.default
                 ];
               };
+            }
+
+            relago.nixosModules.default
+            {
+              services.relago.enable = true;
             }
           ];
         };

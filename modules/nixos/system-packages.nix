@@ -3,12 +3,12 @@
     wget
     curl
     btop
-    nvtopPackages.nvidia
     intel-gpu-tools
     libva-utils
     vulkan-tools
     pciutils
     usbutils
     lm_sensors
+    (nvtopPackages.nvidia.override {intel = true;})
   ];
 }
